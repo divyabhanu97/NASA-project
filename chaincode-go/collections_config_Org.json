@@ -1,0 +1,12 @@
+{
+    "name": "assetCollection",
+    "policy": "OR('nasaMSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 1,
+    "blockToLive":0,
+    "memberOnlyRead": true,
+    "memberOnlyWrite": true,
+    "endorsementPolicy": {
+      "signaturePolicy": "OR('nasaMSP.member')"
+    }
+ }

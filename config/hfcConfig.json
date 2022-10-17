@@ -1,0 +1,8 @@
+{
+    "CC_SRC_PATH": "../chaincode-go",
+    "noOfPeers": 1,
+    "channelName": "mbsemodel",
+    "chaincodeName": "spmchaincode",
+    "chaincodeVersion": "1.0",
+    "chaincodePath": "./artifacts/src/chaincode"
+}

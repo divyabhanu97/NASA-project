@@ -1,0 +1,5 @@
+export ASSET_PROPERTIES=$(echo -n "{\"ActionId\":\"action001\",\"ActionName\":\"\",\"BCAssetId\":\"bcasset001\",\"BCAssetType\":\"\",\"BCAsset\":{\"BCAssetId\":\"bcasset001\",\"BCAssetType\":\"\",\"ProjectBCAssetId\":\"\",\"BCAssetName\":\"\",\"Description\":\"\",\"CRSubmissionTime\":\"\",\"IsWithdrawn\":false,\"WithdrawnTime\":\"\",\"CRDecision\":{\"CRDecisionTime\":\"\",\"CRDecisionNum\":0,\"CRDecisionStatus\":\"\"},\"CRComments\":{\"CommentTime\":\"\",\"Comment\":\"\",\"CommenterId\":\"\"},\"Project\":{\"IsTopLevel\":false,\"PORTType\":null,\"OrgRoles\":null,\"OrgUserRoleTypes\":null,\"OrgUserRoles\":null,\"BCAssetTypeRoleTypes\":null,\"BCAssetTypeRoles\":null,\"ParentProjectId\":\"\"}},\"AttributesToRead\":null,\"AttributesToUpdate\":{\"CRSubmissionTime\":\"\",\"CRDecision\":{\"CRDecisionTime\":\"\",\"CRDecisionNum\":0,\"CRDecisionStatus\":\"\"}}}" | base64 | tr -d \\n)
+
+peer chaincode invoke -o localhost:7050 --tls --cafile $ORDERER_CA -C mbsemodel -n fabcar -c '{"function":"CreateCR","Args":[]}' --transient "{\"asset_properties\":\"$ASSET_PROPERTIES\"}"
+
+
