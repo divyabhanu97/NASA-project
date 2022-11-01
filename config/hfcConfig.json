@@ -1,5 +1,5 @@
 {
-    "CC_SRC_PATH": "../chaincode-go",
+    "CC_SRC_PATH": "../asset-transfer-abac/chaincode-go",
     "noOfPeers": 1,
     "channelName": "mbsemodel",
     "chaincodeName": "spmchaincode",

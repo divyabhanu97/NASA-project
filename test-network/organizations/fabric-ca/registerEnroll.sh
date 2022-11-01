@@ -47,7 +47,9 @@ function createOrg1 {
   echo "Register user"
   echo
   set -x
-  fabric-ca-client register --caname ca-${ORG_NAME} --id.name user1 --id.secret user1pw --id.type client --tls.certfiles ${PWD}/organizations/fabric-ca/${ORG_NAME}/tls-cert.pem
+  # [{ name: ‘role’, value: ‘approver’, ecert: true }]
+  fabric-ca-client register --caname ca-${ORG_NAME} --id.name user1 --id.secret user1pw --id.type client --id.affiliation ${ORG_NAME} --id.attrs 'role=CSE:' --tls.certfiles ${PWD}/organizations/fabric-ca/${ORG_NAME}/tls-cert.pem
+  # fabric-ca-client register --caname ca-${ORG_NAME} --id.name user2 --id.secret user2pw --id.type client --tls.certfiles ${PWD}/organizations/fabric-ca/${ORG_NAME}/tls-cert.pem
   set +x
 
   echo
@@ -100,7 +102,10 @@ function createOrg1 {
   echo "## Generate the user msp"
   echo
   set -x
-	fabric-ca-client enroll -u https://user1:user1pw@localhost:${CAPORT} --caname ca-${ORG_NAME} -M ${PWD}/organizations/peerOrganizations/${ORG_DOMAIN}/users/User1@${ORG_DOMAIN}/msp --tls.certfiles ${PWD}/organizations/fabric-ca/${ORG_NAME}/tls-cert.pem
+	
+  fabric-ca-client enroll -u https://user1:user1pw@localhost:${CAPORT} --caname ca-${ORG_NAME} --enrollment.attrs "role" -M ${PWD}/organizations/peerOrganizations/${ORG_DOMAIN}/users/User1@${ORG_DOMAIN}/msp --tls.certfiles ${PWD}/organizations/fabric-ca/${ORG_NAME}/tls-cert.pem
+  
+  cp ${PWD}/organizations/peerOrganizations/${ORG_DOMAIN}/msp/config.yaml ${PWD}/organizations/peerOrganizations/${ORG_DOMAIN}/users/User1@${ORG_DOMAIN}/msp/config.yaml
   set +x
 
   mkdir -p organizations/peerOrganizations/${ORG_DOMAIN}/users/Admin@${ORG_DOMAIN}
